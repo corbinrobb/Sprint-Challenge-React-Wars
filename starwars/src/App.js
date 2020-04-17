@@ -5,16 +5,34 @@ import axios from 'axios';
 import { Container } from 'reactstrap';
 import Character from './components/Character';
 import SearchBar from './components/SearchBar';
+import styled from 'styled-components';
+
+const CardContainer = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .card {
+    width: 30%;
+    margin: 1%;
+    text-align: left;
+    line-height: 2;
+    padding: 1%;
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    div > * {
+      margin: 1% 0;
+    }
+  }
+`
 
 const App = () => {
-  // Try to think through what state you'll need for this app before starting. Then build out
-  // the state properties here.
   const [ characters, setCharacters ] = useState([]);
   const [ searchTerm, setSearchTerm ] = useState('');
-
-  // Fetch characters from the API in an effect hook. Remember, anytime you have a 
-  // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
 
   useEffect(() => {
     axios.get('https://rickandmortyapi.com/api/character')
@@ -40,11 +58,11 @@ const App = () => {
     <div className="App">
       <h1 className="Header">Characters</h1>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      <Container className="card-container">
+      <CardContainer>
         {filteredCharacters().map(character => {
           return <Character key={character.id} character={character} />
         })}
-      </Container>
+      </CardContainer>
     </div>
   );
 }
