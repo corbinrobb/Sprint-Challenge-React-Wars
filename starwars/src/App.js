@@ -23,14 +23,25 @@ const App = () => {
         setCharacters(res.data.results)
       })
       .catch(err => console.log(err));
-  }, [])
+  }, []);
+
+  const filteredCharacters = () => {
+    return characters.filter(character => {
+      const values = [character.name, character.species, character.status, character.gender, character.origin.name]
+
+      return values.reduce((acc, value) => {
+        if (value.toLowerCase().includes(searchTerm.toLowerCase())) acc = true;
+        return acc;
+      }, false)
+    })
+  }
 
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <Container className="card-container">
-        {characters.map(character => {
+        {filteredCharacters().map(character => {
           return <Character key={character.id} character={character} />
         })}
       </Container>

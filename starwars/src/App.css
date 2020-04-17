@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  max-width: 75vw;
+  margin: 0 auto;
 }
 .Header {
   color: #443e3e;
@@ -14,6 +16,18 @@
 }
 
 .card-container .card {
-  width: 25%;
+  width: 30%;
   margin: 1%;
+  text-align: left;
+  line-height: 2;
+  padding: 1%;
+}
+
+.card div {
+  display: flex;
+  flex-direction: column;
+}
+
+.card div > * {
+  margin: 1% 0;
 }
