@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import axios from 'axios';
-import { Container } from 'reactstrap';
 import Character from './components/Character';
 import SearchBar from './components/SearchBar';
 import styled from 'styled-components';
